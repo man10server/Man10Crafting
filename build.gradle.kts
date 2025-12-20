@@ -40,7 +40,7 @@ dependencies {
     implementation("tororo1066:tororopluginapi:$apiVersion")
     compileOnly("com.mojang:brigadier:1.0.18")
 
-    compileOnly("tororo1066:stop-craft-cmd:c4e2283")
+    compileOnly("tororo1066:stop-craft-cmd:4966112")
     compileOnly("de.tr7zw:item-nbt-api-plugin:2.15.2")
 }
 

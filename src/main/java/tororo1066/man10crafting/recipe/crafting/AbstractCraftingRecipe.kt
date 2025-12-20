@@ -4,6 +4,7 @@ import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.entity.HumanEntity
 import org.bukkit.event.Event
 import org.bukkit.event.inventory.CraftItemEvent
+import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.inventory.PrepareItemCraftEvent
 import org.bukkit.inventory.CraftingInventory
 import tororo1066.man10crafting.recipe.AbstractBukkitRecipe
@@ -52,6 +53,10 @@ abstract class AbstractCraftingRecipe: AbstractBukkitRecipe(), Permissible, Comm
 
     override fun performCraft(event: Event): Int {
         return performCraft(event as CraftItemEvent)
+    }
+
+    override fun getInventoryTypes(): List<InventoryType> {
+        return listOf(InventoryType.CRAFTING, InventoryType.WORKBENCH)
     }
 
     override fun serializeOption(): ConfigurationSection {

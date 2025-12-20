@@ -10,6 +10,7 @@ import org.bukkit.event.block.BrewingStartEvent
 import org.bukkit.event.inventory.BrewEvent
 import org.bukkit.inventory.ItemStack
 import org.bukkit.configuration.ConfigurationSection
+import org.bukkit.event.inventory.InventoryType
 import tororo1066.man10crafting.ingredient.AbstractIngredient
 import tororo1066.man10crafting.inventory.register.AbstractRegister
 import tororo1066.man10crafting.inventory.register.BrewingRegister
@@ -105,6 +106,10 @@ class BrewingCraftingRecipe: AbstractRecipe() {
 
     override fun getRegisterInventory(): AbstractRegister<*> {
         return BrewingRegister(this)
+    }
+
+    override fun getInventoryTypes(): List<InventoryType> {
+        return listOf(InventoryType.BREWING)
     }
 
     override fun register() {

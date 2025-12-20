@@ -4,6 +4,7 @@ import org.bukkit.Material
 import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.entity.HumanEntity
 import org.bukkit.event.Event
+import org.bukkit.event.inventory.InventoryType
 import org.bukkit.event.inventory.PrepareSmithingEvent
 import org.bukkit.event.inventory.SmithItemEvent
 import org.bukkit.inventory.RecipeChoice
@@ -112,6 +113,10 @@ abstract class AbstractSmithingRecipe: AbstractBukkitRecipe(), Permissible, Comm
         addition?.let {
             setIngredientItem(21, it)
         } ?: setItem(21, noneItem)
+    }
+
+    override fun getInventoryTypes(): List<InventoryType> {
+        return listOf(InventoryType.SMITHING)
     }
 
     override fun serializeOption(): ConfigurationSection {

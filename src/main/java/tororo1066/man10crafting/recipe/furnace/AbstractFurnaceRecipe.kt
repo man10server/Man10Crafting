@@ -5,6 +5,7 @@ import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.entity.HumanEntity
 import org.bukkit.event.Event
 import org.bukkit.event.block.BlockCookEvent
+import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.ItemStack
 import tororo1066.man10crafting.ingredient.AbstractIngredient
 import tororo1066.man10crafting.inventory.register.Items
@@ -60,6 +61,10 @@ abstract class AbstractFurnaceRecipe: AbstractBukkitRecipe() {
         setItem(20, Items.backgroundBlack())
 
         setResultItem(24, result)
+    }
+
+    override fun getInventoryTypes(): List<InventoryType> {
+        return listOf(InventoryType.FURNACE, InventoryType.BLAST_FURNACE, InventoryType.SMOKER)
     }
 
     override fun serialize(): ConfigurationSection {

@@ -6,6 +6,7 @@ import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.entity.HumanEntity
 import org.bukkit.event.Event
 import org.bukkit.event.inventory.InventoryClickEvent
+import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.Recipe
 import org.bukkit.inventory.StonecutterInventory
@@ -93,6 +94,10 @@ class StonecuttingCraftingRecipe: AbstractBukkitRecipe(), Permissible, CommandEx
 
     override fun getRegisterInventory(): AbstractRegister<*> {
         return StonecuttingRegister(this)
+    }
+
+    override fun getInventoryTypes(): List<InventoryType> {
+        return listOf(InventoryType.STONECUTTER)
     }
 
     override fun serializeOption(): ConfigurationSection {

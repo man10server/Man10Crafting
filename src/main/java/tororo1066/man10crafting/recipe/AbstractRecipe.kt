@@ -5,6 +5,7 @@ import org.bukkit.configuration.ConfigurationSection
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.entity.HumanEntity
 import org.bukkit.event.Event
+import org.bukkit.event.inventory.InventoryType
 import org.bukkit.inventory.ItemStack
 import tororo1066.man10crafting.ingredient.AbstractIngredient
 import tororo1066.man10crafting.inventory.register.AbstractRegister
@@ -45,6 +46,8 @@ abstract class AbstractRecipe {
     )
 
     abstract fun getRegisterInventory(): AbstractRegister<*>
+
+    abstract fun getInventoryTypes(): List<InventoryType>
 
     fun renderRecipeView(
         inventory: SInventory,

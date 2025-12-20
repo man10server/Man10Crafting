@@ -5,6 +5,7 @@ import org.bukkit.Keyed
 import org.bukkit.NamespacedKey
 import org.bukkit.configuration.file.YamlConfiguration
 import org.bukkit.configuration.serialization.ConfigurationSerialization
+import org.bukkit.event.inventory.InventoryType
 import tororo1066.man10crafting.commands.MCCommand
 import tororo1066.man10crafting.customFurnace.CustomFurnaceManager
 import tororo1066.man10crafting.data.CategoryDisplayItem
@@ -31,7 +32,7 @@ class Man10Crafting: SJavaPlugin(UseOption.SInput) {
         val old_recipes = HashMap<String,LegacyRecipeData>()
         val recipes = HashMap<NamespacedKey, AbstractRecipe>()
         val categoryDisplayItems = HashMap<String, CategoryDisplayItem>()
-        val ingredientCache = mutableSetOf<AbstractIngredient>()
+        val ingredientCache = HashMap<InventoryType, MutableList<AbstractIngredient>>()
         lateinit var sConfig: SConfig
         lateinit var sInput: SInput
         lateinit var sLang: SLang
@@ -83,10 +84,10 @@ class Man10Crafting: SJavaPlugin(UseOption.SInput) {
         reloadPluginConfig()
     }
 
-    fun reloadPluginConfig(){
+    fun reloadPluginConfig() {
         plugin.reloadConfig()
         val iterator = Bukkit.recipeIterator()
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             val recipe = iterator.next()
             if (recipe is Keyed && recipe.key.namespace == "man10crafting"){
                 iterator.remove()
@@ -132,10 +133,14 @@ class Man10Crafting: SJavaPlugin(UseOption.SInput) {
         MCCommand()
     }
 
-    fun rebuildIngredientCache(){
+    fun rebuildIngredientCache() {
         ingredientCache.clear()
         recipes.values.forEach { recipe ->
-            ingredientCache.addAll(recipe.getIngredients())
+            val types = recipe.getInventoryTypes()
+            types.forEach { type ->
+                ingredientCache.getOrPut(type) { mutableListOf() }
+                    .addAll(recipe.getIngredients())
+            }
         }
     }
 

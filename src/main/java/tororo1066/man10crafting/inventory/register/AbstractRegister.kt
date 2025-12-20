@@ -71,7 +71,7 @@ abstract class AbstractRegister<T: AbstractRecipe>(
         if (isEdit) {
             return SInventoryItem(
                 SItem(Material.WRITABLE_BOOK)
-                    .setDisplayName("§上書き保存")
+                    .setDisplayName("§a上書き保存")
             ).setCanClick(false)
                 .setClickEvent {
                     it.whoClicked.closeInventory()

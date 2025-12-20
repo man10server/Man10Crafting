@@ -91,6 +91,10 @@ class CraftListener {
 
         val amount = recipe.performCraft(e)
 
+        if (!recipe.craftable(e)) {
+            e.inventory.result = null
+        }
+
         if (amount > 0) {
             val player = e.whoClicked as? Player ?: return
             insertLog(recipe, player, player.location, amount)
@@ -121,6 +125,11 @@ class CraftListener {
         if (amount > 0) {
             insertLog(recipe, null, e.block.location, amount)
         }
+    }
+
+    @SEventHandler
+    fun event(e: FurnaceSmeltEvent) {
+        event(e as BlockCookEvent)
     }
 
     @SEventHandler
