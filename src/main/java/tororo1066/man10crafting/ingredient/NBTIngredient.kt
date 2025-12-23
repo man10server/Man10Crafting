@@ -134,6 +134,9 @@ class NBTIngredient: MaterialIngredient() {
                                 SItem(Material.WRITABLE_BOOK)
                                     .setDisplayName("§a必要なNBTを設定する")
                                     .addLore(
+                                        "§b指定したNBTが含まれていた場合素材として扱います",
+                                        "§eルートからのNBT形式で入力してください",
+                                        "§e例: {components:[\"minecraft:custom_data\":{my_plugin:{my_key:1}}]}",
                                         "§d現在の値: ${requiredNBT ?: "§cなし"}"
                                     ), String::class.java, "§b必要なNBTを入力してください"
                             ) { str, _ ->
