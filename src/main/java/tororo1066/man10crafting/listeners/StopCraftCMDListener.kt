@@ -10,7 +10,7 @@ class StopCraftCMDListener {
     fun onInteract(e: StopCmdInteractEvent) {
         if (e.isCancelled) return
         val item = e.itemStack
-        val cache = Man10Crafting.ingredientCache[e.clickEvent.inventory.type] ?: return
+        val cache = Man10Crafting.ingredientCache[e.clickEvent.view.type] ?: return
         if (cache.any { it.isSimilar(item) }) {
             e.isCancelled = true
         }
